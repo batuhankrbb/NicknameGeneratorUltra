@@ -18,10 +18,10 @@ class NGSwitch:UISwitch{
         onTintColor = UIColor.mainColor()
         isOn = false
         tintColor = .lightGray      
-        addTarget(self, action: #selector(deneme), for: .valueChanged)
+        addTarget(self, action: #selector(animForSwitch), for: .valueChanged)
     }
     
-    @objc func deneme(){
+    @objc func animForSwitch(){
         UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             if self.isOn{
                 self.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)

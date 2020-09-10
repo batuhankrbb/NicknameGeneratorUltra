@@ -19,7 +19,6 @@
 		84BC6D9C25092012000DA94A /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BC6D9825092012000DA94A /* Extension+UIColor.swift */; };
 		84BC6D9D25092012000DA94A /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BC6D9925092012000DA94A /* Extension+String.swift */; };
 		84BC6D9F25092029000DA94A /* StringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BC6D9E25092029000DA94A /* StringGenerator.swift */; };
-		84BC6DA4250922A2000DA94A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BC6DA3250922A2000DA94A /* SettingsViewModel.swift */; };
 		84BC6DAB250926F8000DA94A /* NGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BC6DAA250926F8000DA94A /* NGButton.swift */; };
 		84BC6DAD250931F2000DA94A /* NGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BC6DAC250931F2000DA94A /* NGTextField.swift */; };
 		84E34E522509D00500766737 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34E512509D00500766737 /* SettingsView.swift */; };
@@ -28,6 +27,7 @@
 		84E34E592509D86A00766737 /* NGStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34E582509D86A00766737 /* NGStackView.swift */; };
 		84E34E5E2509EE3500766737 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34E5D2509EE3500766737 /* MainView.swift */; };
 		84E34E602509F0AC00766737 /* NGFavoriteStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34E5F2509F0AC00766737 /* NGFavoriteStackView.swift */; };
+		84E34E63250A0B0400766737 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34E62250A0B0400766737 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,6 @@
 		84BC6D9825092012000DA94A /* Extension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		84BC6D9925092012000DA94A /* Extension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		84BC6D9E25092029000DA94A /* StringGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringGenerator.swift; sourceTree = "<group>"; };
-		84BC6DA3250922A2000DA94A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		84BC6DAA250926F8000DA94A /* NGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGButton.swift; sourceTree = "<group>"; };
 		84BC6DAC250931F2000DA94A /* NGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGTextField.swift; sourceTree = "<group>"; };
 		84E34E512509D00500766737 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		84E34E582509D86A00766737 /* NGStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGStackView.swift; sourceTree = "<group>"; };
 		84E34E5D2509EE3500766737 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		84E34E5F2509F0AC00766737 /* NGFavoriteStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGFavoriteStackView.swift; sourceTree = "<group>"; };
+		84E34E62250A0B0400766737 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +86,13 @@
 		84BC6D7425091668000DA94A /* NicknameGeneratorU */ = {
 			isa = PBXGroup;
 			children = (
+				84E34E61250A0AED00766737 /* Controllers */,
 				84BC6DA225092090000DA94A /* ViewModel */,
 				84BC6DA125092083000DA94A /* Model */,
 				84BC6DA025092070000DA94A /* View */,
 				84BC6D952509200B000DA94A /* Extension */,
 				84BC6D7525091668000DA94A /* AppDelegate.swift */,
 				84BC6D7725091668000DA94A /* SceneDelegate.swift */,
-				84BC6D7925091668000DA94A /* MainVC.swift */,
 				84BC6D7B25091668000DA94A /* Main.storyboard */,
 				84BC6D8125091668000DA94A /* Assets.xcassets */,
 				84BC6D8325091668000DA94A /* LaunchScreen.storyboard */,
@@ -139,7 +139,6 @@
 		84BC6DA225092090000DA94A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				84BC6DA3250922A2000DA94A /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -158,6 +157,15 @@
 				84E34E5D2509EE3500766737 /* MainView.swift */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		84E34E61250A0AED00766737 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				84BC6D7925091668000DA94A /* MainVC.swift */,
+				84E34E62250A0B0400766737 /* SettingsVC.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E34E63250A0B0400766737 /* SettingsVC.swift in Sources */,
 				84BC6D9D25092012000DA94A /* Extension+String.swift in Sources */,
 				84BC6D9F25092029000DA94A /* StringGenerator.swift in Sources */,
 				84E34E592509D86A00766737 /* NGStackView.swift in Sources */,
@@ -239,7 +248,6 @@
 				84E34E572509D24100766737 /* NGSwitch.swift in Sources */,
 				84E34E602509F0AC00766737 /* NGFavoriteStackView.swift in Sources */,
 				84BC6D9C25092012000DA94A /* Extension+UIColor.swift in Sources */,
-				84BC6DA4250922A2000DA94A /* SettingsViewModel.swift in Sources */,
 				84BC6DAD250931F2000DA94A /* NGTextField.swift in Sources */,
 				84BC6DAB250926F8000DA94A /* NGButton.swift in Sources */,
 				84BC6D9B25092012000DA94A /* Extensions+UIView.swift in Sources */,

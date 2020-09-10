@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 class SettingsView:UIStackView{
+
+  
+    
+    var delegate:SettingsViewDelegate?
+    
     lazy var textFieldBegin:UITextField = {
         let textField = NGTextField()
         return textField
@@ -44,16 +49,27 @@ class SettingsView:UIStackView{
         let unwantedSV = NGStackView(itemlist: [createLbl(text: "Unwanted Text:"),textFieldWithout])
         let numberSV = NGStackView(itemlist: [createLbl(text: "Numbers:"),numbersSwitch])
         let uppercaseSV = NGStackView(itemlist: [createLbl(text: "Uppercase:"),uppercaseSwitch])
+    
         [beginSV,endSV,unwantedSV,numberSV,uppercaseSV,settingsViewBelow].forEach{addArrangedSubview($0)}
         distribution = .equalCentering
         axis = .vertical
+        settingsViewBelow.saveButton.addTarget(self, action: #selector(saveClicked), for: .touchUpInside)
+        settingsViewBelow.resetButton.addTarget(self, action: #selector(resetClicked), for: .touchUpInside)
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func saveClicked(){
+        let generator = StringGenerator(beginWith: textFieldBegin.text, endWith: textFieldEnd.text, withoutString: textFieldWithout.text, isNumberEnabled: numbersSwitch.isOn, length: Int(settingsViewBelow.lengthSlider.value))
+        
+        delegate?.getTheSettings(generator: generator)
+    }
     
+    @objc func resetClicked(){
+        delegate?.resetSettings()
+    }
     
     fileprivate func createLbl(text:String) -> UILabel{
         let label = NGLabel()
@@ -82,6 +98,14 @@ class SettingsView:UIStackView{
         return label
     }()
     
+    
+    lazy var saveButton:UIButton = {
+        let buton = NGButton()
+        buton.setTitle("Save Settings", for: .normal)
+        buton.titleLabel?.textColor = .white
+        return buton
+    }()
+    
     lazy var resetButton:UIButton = {
         let buton = NGButton()
         buton.setTitle("Reset Settings", for: .normal)
@@ -93,6 +117,7 @@ class SettingsView:UIStackView{
         super.init(frame: frame)
         addArrangedSubview(lengthSlider)
         addArrangedSubview(lengthLabel)
+        addArrangedSubview(saveButton)
         addArrangedSubview(resetButton)
         distribution = .equalCentering
         axis = .vertical
@@ -104,4 +129,10 @@ class SettingsView:UIStackView{
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+protocol SettingsViewDelegate {
+    func getTheSettings(generator: StringGenerator)
+    func resetSettings()
 }

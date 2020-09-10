@@ -9,13 +9,15 @@
 import Foundation
 
 class StringGenerator{
+
+    
     let numbers = "123456789"
     let lowerCases = "abcdefghijklmnopqrstuvwxyz"
     
-    var beginWith:String
-    var endWith:String
-    var withoutString:String
-    var isNumberEnabled:Bool
+    var beginWith:String?
+    var endWith:String?
+    var withoutString:String?
+    var isNumberEnabled:Bool?
     var length:Int?
     
     init(beginWith:String?, endWith:String?, withoutString:String?, isNumberEnabled:Bool?,length:Int?) {
@@ -29,15 +31,21 @@ class StringGenerator{
     
     func generateString() -> String{
         var fullStringForGenerate = lowerCases
-        if isNumberEnabled{
+        
+        if isNumberEnabled ?? false{
             fullStringForGenerate.append(numbers)
         }
         
         var nickName = String((0...(self.length ?? Int.random(in: 3...5))).map{_ in
             (fullStringForGenerate.randomElement()!)
-            }).replacingOccurrences(of: withoutString, with: "")
+            }).replacingOccurrences(of: withoutString ?? "", with: "")
         
-       nickName = beginWith + nickName + endWith
+        if let begin = beginWith{
+            nickName = begin + nickName
+        }
+        if let end = endWith{
+            nickName = nickName + end
+        }
         return nickName.capitalizingFirstLetter()
     }
     
@@ -49,4 +57,8 @@ class StringGenerator{
         self.length = nil
     }
     
+
+    
 }
+
+

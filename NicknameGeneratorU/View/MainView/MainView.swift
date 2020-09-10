@@ -28,7 +28,7 @@ class MainView:UIStackView{
     }()
     
     
-    lazy var buttonAddToFavorite:UIStackView = {
+    lazy var buttonAddToFavorite:NGFavoriteStackView = {
         let stackview = NGFavoriteStackView()
         stackview.heightAnchor.constraint(equalToConstant: 35).isActive = true
         return stackview

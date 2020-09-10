@@ -11,33 +11,35 @@ import UIKit
 
 class NGFavoriteStackView:UIStackView{
     
-    var isFavorite = false // bu özelliği gözleyeceğiz
-    let starButton = UIImageView(image: UIImage(systemName: "star"))
+   fileprivate var isFavorite = false
+    
+   fileprivate let starButton = UIImageView(image: UIImage(systemName: "star"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         axis = .horizontal
+        starButton.isUserInteractionEnabled = true
         let label = NGLabel()
         label.text = "Add To Favorite"
-        starButton.isUserInteractionEnabled = true
         starButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         starButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         starButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(favoriteTapped)))
         addArrangedSubview(label)
         addArrangedSubview(starButton)
         spacing = 10
-        
-        
     }
+    
+    var isFavoriteObserver: ((Bool) -> ())?
     
     @objc fileprivate func favoriteTapped(){
         if isFavorite{
-              self.starButton.image = UIImage(systemName: "star.fill")
+              self.starButton.image = UIImage(systemName: "star")
         }else{
-            self.starButton.image = UIImage(systemName: "star")
+            self.starButton.image = UIImage(systemName: "star.fill")
         }
         isFavorite = !isFavorite
+        isFavoriteObserver?(isFavorite)
     }
     
     required init(coder: NSCoder) {
