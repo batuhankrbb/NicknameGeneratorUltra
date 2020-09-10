@@ -19,13 +19,15 @@ class StringGenerator{
     var withoutString:String?
     var isNumberEnabled:Bool?
     var length:Int?
+    var isRandom:Bool?
     
-    init(beginWith:String?, endWith:String?, withoutString:String?, isNumberEnabled:Bool?,length:Int?) {
+    init(beginWith:String?, endWith:String?, withoutString:String?, isNumberEnabled:Bool?,length:Int?,isRandom:Bool?) {
         self.beginWith = beginWith ?? ""
         self.endWith = endWith ?? ""
         self.withoutString = withoutString ?? ""
         self.isNumberEnabled = isNumberEnabled ?? false
         self.length = length
+        self.isRandom = isRandom ?? true
     }
 
     
@@ -35,8 +37,13 @@ class StringGenerator{
         if isNumberEnabled ?? false{
             fullStringForGenerate.append(numbers)
         }
-        
-        var nickName = String((0...(self.length ?? Int.random(in: 3...5))).map{_ in
+        var nickLength = 0
+        if self.length == nil || isRandom == true{
+            nickLength = Int.random(in: 3...6)
+        }else{
+            nickLength = length!
+        }
+        var nickName = String((1...(nickLength)).map{_ in
             (fullStringForGenerate.randomElement()!)
             }).replacingOccurrences(of: withoutString ?? "", with: "")
         
@@ -55,6 +62,7 @@ class StringGenerator{
         self.withoutString = ""
         self.isNumberEnabled = false
         self.length = nil
+        self.isRandom = true
     }
     
 

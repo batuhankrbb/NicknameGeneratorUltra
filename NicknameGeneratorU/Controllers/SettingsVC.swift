@@ -12,12 +12,18 @@ class SettingsVC: UIViewController {
 
     let settingsView = SettingsView()
     var delegate:SettingsViewDelegate?
+    var generatorForView:StringGenerator!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         adjustView()
         settingsView.delegate = self.delegate
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(doneButton))
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        settingsView.adjustView(generator: generatorForView)
     }
     
     fileprivate func adjustView(){
@@ -30,6 +36,7 @@ class SettingsVC: UIViewController {
     @objc fileprivate func doneButton(){
         self.dismiss(animated: true, completion: nil)
     }
+    
     
 }
 

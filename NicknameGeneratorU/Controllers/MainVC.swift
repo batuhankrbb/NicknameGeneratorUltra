@@ -11,8 +11,9 @@ import UIKit
 class MainVC: UIViewController {
 
     var mainView = MainView()
-    var generator = StringGenerator(beginWith: nil, endWith: nil, withoutString: nil, isNumberEnabled: nil, length: nil)
-    
+    var generator = StringGenerator(beginWith: nil, endWith: nil, withoutString: nil, isNumberEnabled: nil, length: nil,isRandom: nil)
+    fileprivate let setVC = SettingsVC()
+    fileprivate lazy var nav = UINavigationController(rootViewController: setVC)
     override func viewDidLoad() {
         super.viewDidLoad()
         adjustConstraints()
@@ -21,6 +22,7 @@ class MainVC: UIViewController {
         mainView.buttonSettings.addTarget(self, action: #selector(goToSetting), for: .touchUpInside)
         mainView.buttonFavorites.addTarget(self, action: #selector(goToFavorites), for: .touchUpInside)
         addFavoriteObserver()
+        generateNickName()
    
     }
     
@@ -33,10 +35,9 @@ class MainVC: UIViewController {
     }
     
     @objc func goToSetting(){
-       let setVC = SettingsVC()
-       let nav = UINavigationController(rootViewController: setVC)
         setVC.delegate = self
        nav.modalPresentationStyle = .automatic
+        setVC.generatorForView = generator
        present(nav, animated: true, completion: nil)
     }
     
@@ -65,10 +66,12 @@ class MainVC: UIViewController {
 extension MainVC:SettingsViewDelegate{
     func getTheSettings(generator: StringGenerator) {
         self.generator = generator
+        self.nav.dismiss(animated: true, completion: nil)
     }
     
     func resetSettings() {
         self.generator.resetSettings()
+        self.nav.dismiss(animated: true, completion: nil)
     }
     
     

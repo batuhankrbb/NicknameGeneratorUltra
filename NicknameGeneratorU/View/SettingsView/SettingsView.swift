@@ -12,35 +12,36 @@ import UIKit
 class SettingsView:UIStackView{
 
   
-    
+
     var delegate:SettingsViewDelegate?
     
-    lazy var textFieldBegin:UITextField = {
+     var textFieldBegin:UITextField = {
         let textField = NGTextField()
         return textField
     }()
     
-    lazy var textFieldEnd:UITextField = {
+     var textFieldEnd:UITextField = {
         let textField = NGTextField()
         return textField
     }()
     
-    lazy var textFieldWithout:UITextField = {
+     var textFieldWithout:UITextField = {
         let textField = NGTextField()
         return textField
     }()
     
-    lazy var numbersSwitch:UISwitch = {
+     var numbersSwitch:UISwitch = {
         let mySw = NGSwitch()
         return mySw
     }()
     
-    lazy var uppercaseSwitch:UISwitch = {
+     var isRandomSwitch:UISwitch = {
         let mySw = NGSwitch()
+        mySw.addTarget(self, action: #selector(isRandomCheck), for: .valueChanged)
         return mySw
     }()
     
-    lazy var settingsViewBelow = SettingsViewBelow()
+     var settingsViewBelow = SettingsViewBelow()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,21 +49,49 @@ class SettingsView:UIStackView{
         let endSV = NGStackView(itemlist: [createLbl(text: "End With:"),textFieldEnd])
         let unwantedSV = NGStackView(itemlist: [createLbl(text: "Unwanted Text:"),textFieldWithout])
         let numberSV = NGStackView(itemlist: [createLbl(text: "Numbers:"),numbersSwitch])
-        let uppercaseSV = NGStackView(itemlist: [createLbl(text: "Uppercase:"),uppercaseSwitch])
+        let uppercaseSV = NGStackView(itemlist: [createLbl(text: "Random Length:"),isRandomSwitch])
     
         [beginSV,endSV,unwantedSV,numberSV,uppercaseSV,settingsViewBelow].forEach{addArrangedSubview($0)}
         distribution = .equalCentering
         axis = .vertical
         settingsViewBelow.saveButton.addTarget(self, action: #selector(saveClicked), for: .touchUpInside)
         settingsViewBelow.resetButton.addTarget(self, action: #selector(resetClicked), for: .touchUpInside)
+        settingsViewBelow.lengthSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
     }
     
     required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+           fatalError("init(coder:) has not been implemented")
+       }
+    
+    
+    @objc fileprivate func isRandomCheck(){
+        if isRandomSwitch.isOn{
+            settingsViewBelow.lengthLabel.text = "Length: Random"
+            settingsViewBelow.lengthSlider.isHidden = true
+        }else{
+            settingsViewBelow.lengthLabel.text = "Length: \(Int(settingsViewBelow.lengthSlider.value))"
+            settingsViewBelow.lengthSlider.isHidden = false
+        }
     }
     
+    
+    @objc fileprivate func sliderValueChanged(){
+        settingsViewBelow.lengthLabel.text = "Length: \(Int(settingsViewBelow.lengthSlider.value))"
+    }
+    
+    func adjustView(generator:StringGenerator?){
+        textFieldBegin.text = generator?.beginWith ?? ""
+        textFieldEnd.text = generator?.endWith ?? ""
+        textFieldWithout.text = generator?.withoutString ?? ""
+        numbersSwitch.setOn(generator?.isNumberEnabled ?? false, animated: true)
+        isRandomSwitch.setOn(generator?.isRandom ?? true, animated: true)
+        settingsViewBelow.lengthLabel.text = "Length: Random"
+        settingsViewBelow.lengthSlider.value = Float(generator?.length ?? 15)
+        isRandomCheck()
+    }
+
     @objc func saveClicked(){
-        let generator = StringGenerator(beginWith: textFieldBegin.text, endWith: textFieldEnd.text, withoutString: textFieldWithout.text, isNumberEnabled: numbersSwitch.isOn, length: Int(settingsViewBelow.lengthSlider.value))
+        let generator = StringGenerator(beginWith: textFieldBegin.text, endWith: textFieldEnd.text, withoutString: textFieldWithout.text, isNumberEnabled: numbersSwitch.isOn, length: Int(settingsViewBelow.lengthSlider.value),isRandom: isRandomSwitch.isOn)
         
         delegate?.getTheSettings(generator: generator)
     }
@@ -76,58 +105,6 @@ class SettingsView:UIStackView{
         label.text = text
         label.heightAnchor.constraint(equalToConstant: 25).isActive = true
         return label
-    }
-}
-
-
- class SettingsViewBelow: UIStackView {
-    
-    lazy var lengthSlider:UISlider = {
-        let slider = UISlider()
-        slider.maximumValue = 15
-        slider.minimumValue = 3
-        slider.setValue(15, animated: true)
-        slider.minimumTrackTintColor = UIColor.mainColor()
-        return slider
-    }()
-    
-    lazy var lengthLabel:UILabel = {
-        let label = NGLabel()
-        label.text = "Length: Random"
-        label.textAlignment = .center
-        return label
-    }()
-    
-    
-    lazy var saveButton:UIButton = {
-        let buton = NGButton()
-        buton.setTitle("Save Settings", for: .normal)
-        buton.titleLabel?.textColor = .white
-        return buton
-    }()
-    
-    lazy var resetButton:UIButton = {
-        let buton = NGButton()
-        buton.setTitle("Reset Settings", for: .normal)
-        buton.titleLabel?.textColor = .white
-        return buton
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addArrangedSubview(lengthSlider)
-        addArrangedSubview(lengthLabel)
-        addArrangedSubview(saveButton)
-        addArrangedSubview(resetButton)
-        distribution = .equalCentering
-        axis = .vertical
-        spacing = 20
-        isLayoutMarginsRelativeArrangement = true
-        layoutMargins = .init(top: 30, left: 0, bottom: 0, right: 0)
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
