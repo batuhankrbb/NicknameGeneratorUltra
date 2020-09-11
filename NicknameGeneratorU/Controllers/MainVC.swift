@@ -26,7 +26,7 @@ class MainVC: UIViewController {
     var adView:GADBannerView = {
         let gad = GADBannerView(adSize: kGADAdSizeBanner)
         gad.translatesAutoresizingMaskIntoConstraints = false
-        gad.adUnitID = "ca-app-pub-3940256099942544/2934735716" // ca-app-pub-6513980326757872/4298423849
+        gad.adUnitID = "ca-app-pub-6513980326757872/4298423849"
         return gad
     }()
     
@@ -83,7 +83,7 @@ extension MainVC{
             interstitial.present(fromRootViewController: self)
         }else{
             settingsVC.delegate = self
-            settingsNavigation.modalPresentationStyle = .fullScreen
+            settingsNavigation.modalPresentationStyle = .automatic
             settingsVC.generatorForView = generator
             present(settingsNavigation, animated: true, completion: nil)
         }
@@ -121,7 +121,7 @@ extension MainVC:GADInterstitialDelegate{
     }
     
     fileprivate func createAndLoadInterstitial() -> GADInterstitial {
-        var interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        var interstitial = GADInterstitial(adUnitID: "ca-app-pub-6513980326757872/1652272725")
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
@@ -130,7 +130,7 @@ extension MainVC:GADInterstitialDelegate{
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         interstitial = createAndLoadInterstitial()
         settingsVC.delegate = self
-        settingsNavigation.modalPresentationStyle = .fullScreen
+        settingsNavigation.modalPresentationStyle = .automatic
         settingsVC.generatorForView = generator
         present(settingsNavigation, animated: true, completion: nil)
     }

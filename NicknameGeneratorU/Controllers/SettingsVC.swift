@@ -11,8 +11,6 @@ import GoogleMobileAds
 
 class SettingsVC: UIViewController {
     
-     
-    
     let settingsView = SettingsView()
     var delegate:SettingsViewDelegate?
     var generatorForView:StringGenerator!

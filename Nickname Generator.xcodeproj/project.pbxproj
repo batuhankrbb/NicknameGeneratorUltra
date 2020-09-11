@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		0EB9DB249032564635E52F53 /* Pods-NicknameGeneratorU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NicknameGeneratorU.debug.xcconfig"; path = "Target Support Files/Pods-NicknameGeneratorU/Pods-NicknameGeneratorU.debug.xcconfig"; sourceTree = "<group>"; };
 		35C32B31302926AA4F5E4059 /* Pods_NicknameGeneratorU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NicknameGeneratorU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84BC6D7225091668000DA94A /* NicknameGeneratorU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NicknameGeneratorU.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BC6D7225091668000DA94A /* NicknameGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NicknameGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BC6D7525091668000DA94A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84BC6D7725091668000DA94A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		84BC6D7925091668000DA94A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 				0EB9DB249032564635E52F53 /* Pods-NicknameGeneratorU.debug.xcconfig */,
 				BBAE914C1FCE80833456E308 /* Pods-NicknameGeneratorU.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -115,7 +114,7 @@
 		84BC6D7325091668000DA94A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84BC6D7225091668000DA94A /* NicknameGeneratorU.app */,
+				84BC6D7225091668000DA94A /* NicknameGenerator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,7 +245,7 @@
 			);
 			name = NicknameGeneratorU;
 			productName = NicknameGeneratorU;
-			productReference = 84BC6D7225091668000DA94A /* NicknameGeneratorU.app */;
+			productReference = 84BC6D7225091668000DA94A /* NicknameGenerator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -264,7 +263,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "NicknameGeneratorU" */;
+			buildConfigurationList = 84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "Nickname Generator" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -511,14 +510,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83DJ94RA72;
+				DEVELOPMENT_TEAM = 4C2JFX4D74;
 				INFOPLIST_FILE = NicknameGeneratorU/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = batuhankarababa.NicknameGeneratorU;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrahimkarababa.NicknameGenerator;
+				PRODUCT_NAME = NicknameGenerator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -536,8 +535,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = batuhankarababa.NicknameGeneratorU;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrahimkarababa.NicknameGenerator;
+				PRODUCT_NAME = NicknameGenerator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -546,7 +545,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "NicknameGeneratorU" */ = {
+		84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "Nickname Generator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84BC6D8725091668000DA94A /* Debug */,
