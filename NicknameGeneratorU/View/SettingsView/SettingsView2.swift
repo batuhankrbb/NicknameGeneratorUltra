@@ -44,10 +44,7 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addArrangedSubview(lengthSlider)
-        addArrangedSubview(lengthLabel)
-        addArrangedSubview(saveButton)
-        addArrangedSubview(resetButton)
+        [lengthSlider,lengthLabel,saveButton,resetButton].forEach{addArrangedSubview($0)}
         distribution = .equalCentering
         axis = .vertical
         spacing = 20

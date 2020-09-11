@@ -15,33 +15,33 @@ class SettingsView:UIStackView{
 
     var delegate:SettingsViewDelegate?
     
-     var textFieldBegin:UITextField = {
+    lazy var textFieldBegin:UITextField = {
         let textField = NGTextField()
         return textField
     }()
     
-     var textFieldEnd:UITextField = {
+    lazy var textFieldEnd:UITextField = {
         let textField = NGTextField()
         return textField
     }()
     
-     var textFieldWithout:UITextField = {
+    lazy var textFieldWithout:UITextField = {
         let textField = NGTextField()
         return textField
     }()
     
-     var numbersSwitch:UISwitch = {
+    lazy var numbersSwitch:UISwitch = {
         let mySw = NGSwitch()
         return mySw
     }()
     
-     var isRandomSwitch:UISwitch = {
+    lazy var isRandomSwitch:UISwitch = {
         let mySw = NGSwitch()
         mySw.addTarget(self, action: #selector(isRandomCheck), for: .valueChanged)
         return mySw
     }()
     
-     var settingsViewBelow = SettingsViewBelow()
+    lazy var settingsViewBelow = SettingsViewBelow()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,6 +79,17 @@ class SettingsView:UIStackView{
         settingsViewBelow.lengthLabel.text = "Length: \(Int(settingsViewBelow.lengthSlider.value))"
     }
     
+    @objc fileprivate func saveClicked(){
+           let generator = StringGenerator(beginWith: textFieldBegin.text, endWith: textFieldEnd.text, withoutString: textFieldWithout.text, isNumberEnabled: numbersSwitch.isOn, length: Int(settingsViewBelow.lengthSlider.value),isRandom: isRandomSwitch.isOn)
+           
+           delegate?.getTheSettings(generator: generator)
+       }
+    
+    @objc fileprivate func resetClicked(){
+        delegate?.resetSettings()
+    }
+    
+    
     func adjustView(generator:StringGenerator?){
         textFieldBegin.text = generator?.beginWith ?? ""
         textFieldEnd.text = generator?.endWith ?? ""
@@ -88,16 +99,6 @@ class SettingsView:UIStackView{
         settingsViewBelow.lengthLabel.text = "Length: Random"
         settingsViewBelow.lengthSlider.value = Float(generator?.length ?? 15)
         isRandomCheck()
-    }
-
-    @objc func saveClicked(){
-        let generator = StringGenerator(beginWith: textFieldBegin.text, endWith: textFieldEnd.text, withoutString: textFieldWithout.text, isNumberEnabled: numbersSwitch.isOn, length: Int(settingsViewBelow.lengthSlider.value),isRandom: isRandomSwitch.isOn)
-        
-        delegate?.getTheSettings(generator: generator)
-    }
-    
-    @objc func resetClicked(){
-        delegate?.resetSettings()
     }
     
     fileprivate func createLbl(text:String) -> UILabel{

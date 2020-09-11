@@ -44,10 +44,9 @@ class MainView:UIStackView{
     
     lazy var labelNickName:UILabel = {
            let label = NGLabel()
-        label.font = UIFont.systemFont(ofSize: 70,weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 65,weight: .medium)
         label.heightAnchor.constraint(equalToConstant: 100).isActive = true
         label.adjustsFontSizeToFitWidth = true
-        label.text = "DenemeNickname"
         label.textAlignment = .center
            return label
        }()
@@ -71,7 +70,7 @@ class MainView:UIStackView{
         stackViewFavoriteSettings.heightAnchor.constraint(equalToConstant: 100).isActive = true
         stackViewGenerateFavorite.heightAnchor.constraint(equalToConstant: 110).isActive = true
         stackViewLabelCopy.heightAnchor.constraint(equalToConstant: 240).isActive = true
-        stackViewLabelCopy.spacing = 15
+        stackViewLabelCopy.spacing = 5
     }
     
     required init(coder: NSCoder) {

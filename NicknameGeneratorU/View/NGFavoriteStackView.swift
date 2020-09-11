@@ -13,7 +13,7 @@ class NGFavoriteStackView:UIStackView{
     
    fileprivate var isFavorite = false
     
-   fileprivate let starButton = UIImageView(image: UIImage(systemName: "star"))
+    fileprivate let starButton = UIImageView(image: UIImage(systemName: "star"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +39,14 @@ class NGFavoriteStackView:UIStackView{
             self.starButton.image = UIImage(systemName: "star.fill")
         }
         isFavorite = !isFavorite
+        print(isFavorite)
         isFavoriteObserver?(isFavorite)
+        
+    }
+    
+    func resetFavorite(){
+        self.starButton.image = UIImage(systemName: "star")
+        isFavorite = false
     }
     
     required init(coder: NSCoder) {
