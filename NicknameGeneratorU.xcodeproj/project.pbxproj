@@ -263,7 +263,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "Nickname Generator" */;
+			buildConfigurationList = 84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "NicknameGeneratorU" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -545,7 +545,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "Nickname Generator" */ = {
+		84BC6D6D25091668000DA94A /* Build configuration list for PBXProject "NicknameGeneratorU" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84BC6D8725091668000DA94A /* Debug */,
